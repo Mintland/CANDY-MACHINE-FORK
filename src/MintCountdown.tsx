@@ -1,6 +1,9 @@
-import { Paper } from '@material-ui/core';
+import Paper from '@mui/material/Paper';
 import Countdown from 'react-countdown';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+// import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#384457',
+        background: '#77003d',
         color: 'white',
         borderRadius: 5,
         fontSize: 10,
@@ -32,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignContent: 'center',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#384457',
+      background: '#77003d',
       color: 'white',
       borderRadius: 5,
       fontWeight: 'bold',

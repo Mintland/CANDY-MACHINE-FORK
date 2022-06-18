@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
 import { CandyMachineAccount } from '../candy-machine';
-import { CircularProgress } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import { GatewayStatus, useGateway } from '@civic/solana-gateway-react';
 import { useEffect, useState, useRef } from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
@@ -13,14 +13,17 @@ import {
 } from '@identity.com/solana-gateway-ts';
 
 export const CTAButton = styled(Button)`
-  width: 100%;
-  height: 60px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
+width: 100%;
+height: 60px;
+background: #fbf43f;
+color: #77003d;
+font-size: 18px;
+text-align: center!important;
+justify-content: center;
+font-weight: bold;
+&:hover{
+    background: #e1d90f;
+}
 `; // add your own styles here
 
 export const MintButton = ({

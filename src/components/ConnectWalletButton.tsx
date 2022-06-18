@@ -12,12 +12,16 @@ const connectWalletButtonRoot = document.getElementById('connect-wallet-button')
 const ConnectButton = styled(WalletDialogButton)`
   width: 100%;
   height: 60px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
-  color: white;
-  font-size: 16px;
+  background: #fbf43f;
+  color: #77003d;
+  font-size: 18px;
+  text-align: center!important;
+  justify-content: center;
   font-weight: bold;
+  border: 3px solid #000;
+  &:hover{
+      background: #e1d90f;
+  }
 `;
 
 
@@ -39,7 +43,9 @@ export class ConnectWalletButton extends React.Component {
 
     render(): React.ReactNode {
         return ReactDOM.createPortal(
-            <ConnectButton>Connect Wallet</ConnectButton>,
+            <ConnectButton>
+                Connect Wallet
+            </ConnectButton>,
             this.el,
         )
     }

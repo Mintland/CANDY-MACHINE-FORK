@@ -151,6 +151,7 @@ export class MintContainer extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
+        console.log("create");
         return ReactDOM.createPortal(
             this.renderChildren(),
             this.el,

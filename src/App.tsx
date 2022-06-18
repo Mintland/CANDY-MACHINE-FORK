@@ -1,4 +1,3 @@
-import './App.css';
 import { useMemo } from 'react';
 import * as anchor from '@project-serum/anchor';
 import Home from './Home';
@@ -6,11 +5,13 @@ import { DEFAULT_TIMEOUT } from './connection';
 import { clusterApiUrl } from '@solana/web3.js';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
-  getPhantomWallet,
-  getSlopeWallet,
-  getSolflareWallet,
-  getSolletWallet,
-  getSolletExtensionWallet,
+  GlowWalletAdapter,
+  PhantomWalletAdapter,
+  SlopeWalletAdapter,
+  SolflareWalletAdapter,
+  // SolletExtensionWalletAdapter,
+  // SolletWalletAdapter,
+  TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 
 import {
@@ -18,14 +19,10 @@ import {
   WalletProvider,
 } from '@solana/wallet-adapter-react';
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
+import { Theme } from './Theme';
 
-import { ThemeProvider, createTheme } from '@material-ui/core';
 
-const theme = createTheme({
-  palette: {
-    type: 'dark',
-  },
-});
+
 
 const getCandyMachineId = (): anchor.web3.PublicKey | undefined => {
   try {
@@ -52,19 +49,19 @@ const App = () => {
 
   const wallets = useMemo(
     () => [
-      getPhantomWallet(),
-      getSolflareWallet(),
-      getSlopeWallet(),
-      getSolletWallet({ network }),
-      getSolletExtensionWallet({ network }),
+      new PhantomWalletAdapter(),
+      new GlowWalletAdapter(),
+      new SlopeWalletAdapter(),
+      new SolflareWalletAdapter({ network }),
+      new TorusWalletAdapter(),
     ],
-    [],
+    []
   );
 
   return (
-    <ThemeProvider theme={theme}>
+    <Theme>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect>
+        <WalletProvider wallets={wallets}  autoConnect>
           <WalletDialogProvider>
             <Home
               candyMachineId={candyMachineId}
@@ -76,7 +73,7 @@ const App = () => {
           </WalletDialogProvider>
         </WalletProvider>
       </ConnectionProvider>
-    </ThemeProvider>
+    </Theme>
   );
 };
 
