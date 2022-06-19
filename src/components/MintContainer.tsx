@@ -42,6 +42,8 @@ export class MintContainer extends React.Component<Props> {
     renderChildren = () => {
         const { setIsMinting, isUserMinting, isActive, candyMachine, wallet, network, rpcUrl, connection, onMint } = this.props;
         // const { isUserMinting } = this.state;
+
+        console.log(isActive, 123);
         return candyMachine?.state.isActive &&
             candyMachine?.state.gatekeeper &&
             wallet.publicKey &&
@@ -151,7 +153,7 @@ export class MintContainer extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
-        console.log("create");
+        // console.log("create");
         return ReactDOM.createPortal(
             this.renderChildren(),
             this.el,

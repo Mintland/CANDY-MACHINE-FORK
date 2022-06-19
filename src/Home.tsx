@@ -56,7 +56,7 @@ const Home = (props: HomeProps) => {
   const [isActive, setIsActive] = useState(false);
   const [endDate, setEndDate] = useState<Date>();
   const [itemsRemaining, setItemsRemaining] = useState<number>();
-  const [isWhitelistUser, setIsWhitelistUser] = useState(false);
+  // const [isWhitelistUser, setIsWhitelistUser] = useState(false);
   const [isPresale, setIsPresale] = useState(false);
   const [isValidBalance, setIsValidBalance] = useState(false);
   const [discountPrice, setDiscountPrice] = useState<anchor.BN>();
@@ -140,13 +140,13 @@ const Home = (props: HomeProps) => {
               const balance = await connection.getTokenAccountBalance(token);
               isWLUser = parseInt(balance.value.amount) > 0;
               // only whitelist the user if the balance > 0
-              setIsWhitelistUser(isWLUser);
+              // setIsWhitelistUser(isWLUser);
 
               if (cndy.state.isWhitelistOnly) {
                 active = isWLUser && (presale || active);
               }
             } catch (e) {
-              setIsWhitelistUser(false);
+              // setIsWhitelistUser(false);
               // no whitelist user, no mint
               if (cndy.state.isWhitelistOnly) {
                 active = false;
@@ -431,7 +431,7 @@ const Home = (props: HomeProps) => {
     let active = !isActive || isPresale;
 
     if (active) {
-      if (candyMachine!.state.isWhitelistOnly && !isWhitelistUser) {
+      if (candyMachine!.state.isWhitelistOnly ) {
         active = false;
       }
       if (endDate && Date.now() >= endDate.getTime()) {
@@ -507,7 +507,7 @@ const Home = (props: HomeProps) => {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography variant="body2" color="textSecondary">
-                    {isWhitelistUser && discountPrice
+                    {discountPrice
                       ? 'Discount Price'
                       : 'Price'}
                   </Typography>
@@ -516,7 +516,7 @@ const Home = (props: HomeProps) => {
                     color="textPrimary"
                     style={{ fontWeight: 'bold' }}
                   >
-                    {isWhitelistUser && discountPrice
+                    {discountPrice
                       ? `◎ ${formatNumber.asNumber(discountPrice)}`
                       : `◎ ${formatNumber.asNumber(
                         candyMachine.state.price,
@@ -576,8 +576,8 @@ const Home = (props: HomeProps) => {
                 </Grid>
               </Grid>
             )}
-            <ReferralCodeInput />
-            <MintContainer onMint={onMint} connection={props.connection} rpcUrl={props.rpcHost} network={props.network} candyMachine={candyMachine} wallet={wallet} isActive={isActive || (isPresale && isWhitelistUser && isValidBalance)} isUserMinting={isUserMinting} setIsMinting={setIsUserMinting} />
+            {/* <ReferralCodeInput /> */}
+            <MintContainer onMint={onMint} connection={props.connection} rpcUrl={props.rpcHost} network={props.network} candyMachine={candyMachine} wallet={wallet} isActive={isActive || (isPresale && isValidBalance)} isUserMinting={isUserMinting} setIsMinting={setIsUserMinting} />
 
           </>
         )}
